@@ -13,6 +13,16 @@ int main(void){
 
     let n;
     cin>>n;
-    
+    vector<let> a(n),b(n);
+    using X=tuple<let,let,let>; X tp[n+1];
+    for(int i=0;i<n;i++){ cin>>a[i]; }
+    for(int i=0;i<n;i++){ cin>>b[i]; }
+    for(int i=0;i<n;i++) tp[i]={a[i]+b[i],a[i],-i};
+    sort(tp,tp+n,greater<X>());
+    for(int i=0;i<n;i++){
+        let ta,tb,tc;
+        tie(ta,tb,tc)=tp[i];
+        cout<<-tc+1<<" ";
+    }
     return 0;
 }

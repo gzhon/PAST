@@ -11,7 +11,7 @@ using Graph = vector<vector<int>>;
 vec1 dx={1,0,-1,0};
 vec1 dy={0,1,0,-1};
 struct UnionFind
-{   
+{
     vec1 par,size;
     UnionFind(int n):par(n,-1),size(n,1) {
     }
@@ -38,6 +38,7 @@ struct UnionFind
         size[a]+=size[b];
         return true;
     }
+    vec1 rootvec(){ return par; }
     //Qを含むやつの大きさ
     int w_size(int q){ return size[root(q)]; }
 };
@@ -45,20 +46,16 @@ int main(void)
 {
     let n,q,t,u,v;
     cin>>n>>q;
-    Graph G(n);
     UnionFind uf(n);
     for(let i=0;i<q;i++){
         cin>>t;
         if(t==1){
             cin>>u>>v;
-            G[u].push_back(v);
-            G[v].push_back(u);
             uf.unite(u,v);
         }
         else {
             cin>>u;
-            cout<<uf.root(u);
         }
     }
-    return 0;  
+    return 0;
 }
