@@ -2,6 +2,7 @@
 #define isin(i,j,h,w) (!((i<0||i>=h||j<0||j>=w))?true:false)
 using namespace std;
 using let=long long;
+using str=string;
 using P = pair<let,let>;
 using vecs = vector<string>;
 using vec1 = vector<let>;
@@ -16,12 +17,30 @@ int main(void)
 {
     let n;
     cin>>n;
-    vec1 s(n);
-    for(int i=0;i<n;i++) cin>>s[i];
-    for(int i=1;i<=n;i++){
-        if(s[i]==1){
-            if(s[])
+    str s;
+    cin>>s;
+    vec1 ans(n),res;
+    for(int i=0;i<n;i++){
+        if(s[i]=='1'){
+            ans[i]=i+1;
+        }
+        else {
+            res.push_back(i+1);
         }
     }
+    int p=1,size=res.size();
+    if(p==size) goto end;
+    for(int i=0;i<n;i++){
+        if(s[i]=='0'){
+            if(i+1!=res[p]) ans[i]=res[p++];
+            else goto end;
+        }
+        if(p==size) p=0;
+    }
+    for(auto i:ans) cout<<i<<" ";
+    puts("");
+    return 0;
+    end:;
+    cout<<"-1"<<endl;
     return 0;
 }
